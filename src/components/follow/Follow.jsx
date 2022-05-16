@@ -1,6 +1,4 @@
-import { Box, Text, Button, Stack } from "@chakra-ui/react";
-import { Divider } from '@chakra-ui/react';
-import { Avatar } from '@chakra-ui/react';
+import { Box, Text, Button, Stack, Divider, Avatar } from "@chakra-ui/react";
 
 const follow = [
     { name:"Aniket", username:"anik31" },

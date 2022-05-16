@@ -36,7 +36,7 @@ export function CreatePost({isOpen, onClose}){
                 </FormControl>
             </ModalBody>
             <ModalFooter>
-                <Button colorScheme='cyan.400' mr={3} onClick={onClose} >
+                <Button bgColor='cyan.400' color="white" mr={3} onClick={onClose} >
                 Save
                 </Button>
                 <Button onClick={onClose}>Cancel</Button>

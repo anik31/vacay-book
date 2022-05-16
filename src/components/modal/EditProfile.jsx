@@ -41,7 +41,7 @@ export function EditProfile({isOpen, onClose}){
                 </FormControl>
             </ModalBody>
             <ModalFooter>
-                <Button colorScheme='cyan.400' mr={3} onClick={onClose} >
+                <Button mr={3} onClick={onClose} bgColor="cyan.400" color="white" >
                 Save
                 </Button>
                 <Button onClick={onClose}>Cancel</Button>
