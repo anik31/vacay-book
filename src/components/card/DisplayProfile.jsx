@@ -11,9 +11,12 @@ import {
     useDisclosure
   } from '@chakra-ui/react';
 import { EditProfile } from 'components';
+import { logoutUser } from 'features/auth/authSlice';
+import { useDispatch } from 'react-redux';
 
 export function DisplayProfile(){
     const { isOpen, onOpen, onClose } = useDisclosure();
+    const dispatch = useDispatch();
 
     return (
         <>
@@ -109,7 +112,8 @@ export function DisplayProfile(){
                     }}
                     _focus={{
                         bg: 'red.500',
-                    }}>
+                    }}
+                    onClick={()=>dispatch(logoutUser())}>
                     Logout
                     </Button>
                 </Stack>

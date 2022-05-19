@@ -7,3 +7,5 @@ export {CreatePost} from "./modal/CreatePost";
 export {EditProfile} from "./modal/EditProfile";
 export {WithSidebar} from "./routes/WithSidebar";
 export {NotFound} from "./notFound/NotFound";
+export {RequireAuth} from "./routes/RequireAuth";
+export {RestrictAuth} from "./routes/RestrictAuth";
