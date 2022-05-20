@@ -31,7 +31,7 @@ export function DisplayPost({post}){
     const {allUsers} = useSelector(store=>store.user);
     const {user} = useSelector(store=>store.auth);
     const {firstName, lastName, profilePic} = allUsers.find(user=>user.username===username);
-    const fullName = firstName + " " + lastName;
+    const fullName = `${firstName} ${lastName}`;
     const dispatch = useDispatch();
     const [commentInput, setCommentInput] = useState("");
     const toast = useToast();
