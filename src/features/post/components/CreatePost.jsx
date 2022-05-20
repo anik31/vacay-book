@@ -9,13 +9,36 @@ import {
     FormControl,
     FormLabel,
     Textarea, 
-    Button
+    Button,
+    useToast
 } from '@chakra-ui/react';
 import { useRef, useState } from "react";
+import { useDispatch } from 'react-redux';
+import { createPost, editPost } from '../postSlice';
 
-export function CreatePost({isOpen, onClose}){
+export function CreatePost({isOpen, onClose, editPostData, setIsEdit}){
     const initialRef = useRef();
-    const [postInput, setPostInput] = useState("");
+    const [postInput, setPostInput] = useState(editPostData?.content || "");
+    const toast = useToast();
+    const dispatch = useDispatch();
+
+    const createPostHandler = () => {
+        if(editPostData){
+            dispatch(editPost({...editPostData, content: postInput}));
+            setIsEdit(false);
+        }else if(postInput){
+            dispatch(createPost({content: postInput}));
+            onClose();
+        }else{
+            toast({
+                title: "Post text is empty",
+                status: "warning",
+                position: "top-right",
+                isClosable: true,
+                duration: 3000
+            })
+        }
+    };
 
     return (
         <Modal isCentered isOpen={isOpen} onClose={onClose} initialFocusRef={initialRef}>
@@ -36,7 +59,7 @@ export function CreatePost({isOpen, onClose}){
                 </FormControl>
             </ModalBody>
             <ModalFooter>
-                <Button bgColor='cyan.400' color="white" mr={3} onClick={onClose} >
+                <Button bgColor='cyan.400' color="white" mr={3} onClick={createPostHandler} >
                 Save
                 </Button>
                 <Button onClick={onClose}>Cancel</Button>

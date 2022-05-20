@@ -1,7 +1,7 @@
 import { Box, Icon, Text, Button, Flex, Stack, useDisclosure } from "@chakra-ui/react";
 import { NavLink } from "react-router-dom";
 import { MdHome, MdExplore, MdBookmark, MdAccountCircle } from 'react-icons/md';
-import { CreatePost } from "components";
+import { CreatePost } from "features";
 
 const sidenavData = [
     { path: "/", icon: MdHome, text: "Feed" },

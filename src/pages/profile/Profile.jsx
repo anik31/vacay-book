@@ -1,12 +1,12 @@
-import { DisplayPost, DisplayProfile } from "components";
+import { DisplayProfile } from "components";
 
 export function Profile(){
     return (
         <>
         <DisplayProfile/>
+        {/* <DisplayPost/>
         <DisplayPost/>
-        <DisplayPost/>
-        <DisplayPost/>
+        <DisplayPost/> */}
         </>
     );
 }

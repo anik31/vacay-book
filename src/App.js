@@ -1,18 +1,29 @@
 import "styles.css";
 import Mockman from "mockman-js";
 import {Routes, Route} from "react-router-dom";
-import {Home, Explore, Bookmarks, Profile} from "pages";
+import {Bookmarks, Profile} from "pages";
 import { Navbar, NotFound, RequireAuth, RestrictAuth, WithSidebar } from "components";
-import {Login, Signup} from "features";
+import {Login, Signup, Feed, Explore} from "features";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { getAllUser } from "features/profile/userSlice";
+import { getPosts } from "features/post/postSlice";
 
 function App() {
+  const dispatch = useDispatch();
+
+  useEffect(()=>{
+    dispatch(getAllUser());
+    dispatch(getPosts());
+  },[]);
+
   return (
     <div className="App">
       <Navbar/>
       <Routes>
         <Route element={<RequireAuth/>}>
           <Route element={<WithSidebar/>}>
-            <Route path="/" element={<Home/>} />
+            <Route path="/" element={<Feed/>} />
             <Route path="/explore" element={<Explore/>} />
             <Route path="/bookmarks" element={<Bookmarks/>} />
             <Route path="/profile" element={<Profile/>} />
