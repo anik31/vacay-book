@@ -122,7 +122,7 @@ export const bookmarkPostHandler = function (schema, request) {
       );
     }
     const isBookmarked = user.bookmarks.some(
-      (currPost) => currPost._id === postId
+      (currPostId) => currPostId === postId
     );
     if (isBookmarked) {
       return new Response(
@@ -169,13 +169,13 @@ export const removePostFromBookmarkHandler = function (schema, request) {
       );
     }
     const isBookmarked = user.bookmarks.some(
-      (currPost) => currPost._id === postId
+      (currPostId) => currPostId === postId
     );
     if (!isBookmarked) {
       return new Response(400, {}, { errors: ["Post not bookmarked yet"] });
     }
     const filteredBookmarks = user.bookmarks.filter(
-      (currPost) => currPost._id !== postId
+      (currPostId) => currPostId !== postId
     );
     user = { ...user, bookmarks: filteredBookmarks };
     this.db.users.update(

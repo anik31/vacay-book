@@ -1,9 +1,8 @@
 import "styles.css";
 import Mockman from "mockman-js";
 import {Routes, Route} from "react-router-dom";
-import {Profile} from "pages";
 import { Navbar, NotFound, RequireAuth, RestrictAuth, WithSidebar } from "components";
-import {Login, Signup, Feed, Explore, Bookmarks} from "features";
+import {Login, Signup, Feed, Explore, Bookmarks, Profile} from "features";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllUser } from "features/profile/userSlice";
@@ -31,7 +30,7 @@ function App() {
             <Route path="/" element={<Feed/>} />
             <Route path="/explore" element={<Explore/>} />
             <Route path="/bookmarks" element={<Bookmarks/>} />
-            <Route path="/profile" element={<Profile/>} />
+            <Route path="/profile/:username" element={<Profile/>} />
           </Route>
         </Route>
         <Route element={<RestrictAuth/>}>

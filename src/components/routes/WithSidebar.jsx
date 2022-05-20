@@ -1,7 +1,8 @@
 import React from "react";
-import { Sidenav, Follow } from "components";
+import { Sidenav } from "components";
 import { Outlet } from "react-router";
 import { Grid, GridItem } from "@chakra-ui/react";
+import { Follow } from "features";
 
 export function WithSidebar(){
   return (  

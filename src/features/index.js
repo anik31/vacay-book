@@ -5,3 +5,6 @@ export {DisplayPost} from "./post/components/DisplayPost";
 export {Explore} from "./post/Explore";
 export {CreatePost} from "./post/components/CreatePost";
 export {Bookmarks} from "./post/Bookmarks";
+export {Follow} from "./profile/components/Follow";
+export {Profile} from "./profile/Profile";
+export {DisplayProfile} from "./profile/components/DisplayProfile";

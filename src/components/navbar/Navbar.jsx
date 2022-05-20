@@ -21,7 +21,7 @@ export function Navbar(){
                     <Avatar size='sm' name={`${user.firstName} ${user.lastName}`} 
                     src={user.profilePic} />
                     
-                    <Link fontSize='1rem' as={RouterLink} to="/profile">Hello, {user.firstName}</Link>
+                    <Link fontSize='1rem' as={RouterLink} to={`/profile/${user.username}`}>Hello, {user.firstName}</Link>
                 </WrapItem> }               
                 <WrapItem>
                     <Button variant='ghost'><MoonIcon w={5} h={5} color='gray.500' /></Button>
