@@ -1,21 +1,26 @@
 import "styles.css";
 import Mockman from "mockman-js";
 import {Routes, Route} from "react-router-dom";
-import {Bookmarks, Profile} from "pages";
+import {Profile} from "pages";
 import { Navbar, NotFound, RequireAuth, RestrictAuth, WithSidebar } from "components";
-import {Login, Signup, Feed, Explore} from "features";
+import {Login, Signup, Feed, Explore, Bookmarks} from "features";
 import { useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { getAllUser } from "features/profile/userSlice";
 import { getPosts } from "features/post/postSlice";
+import { getBookmarkPosts } from "features/post/bookmarkSlice";
 
 function App() {
   const dispatch = useDispatch();
+  const {token} = useSelector(store=>store.auth);
 
   useEffect(()=>{
-    dispatch(getAllUser());
-    dispatch(getPosts());
-  },[]);
+    if(token){
+      dispatch(getAllUser());
+      dispatch(getPosts());
+      dispatch(getBookmarkPosts());
+    }
+  },[token]);
 
   return (
     <div className="App">

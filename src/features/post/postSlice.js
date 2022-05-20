@@ -1,14 +1,13 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 import { createStandaloneToast } from '@chakra-ui/toast';
-import { loginUser, logoutUser } from "features/auth/authSlice";
+import { logoutUser } from "features/auth/authSlice";
 
 const toast = createStandaloneToast();
 
 const initialState = {
     posts: [],
     postSortType: "",
-    bookmarks: [],
     isLoading: false
 };
 
@@ -90,43 +89,6 @@ export const createPost = createAsyncThunk("posts/createPost",
       }
   );
   
-  export const getBookmarkPosts = createAsyncThunk("posts/getBookmarkPosts",
-    async (_, { rejectWithValue }) => {
-      try {
-        const {data: { bookmarks }} = await axios.get("/api/users/bookmark"); 
-        return bookmarks;
-      } catch (error) {
-        return rejectWithValue(error.response.data.errors[0]);
-      }
-    }
-  );
-  
-  export const addPostInBookmarks = createAsyncThunk("posts/addPostInBookmarks",
-    async (postId, { rejectWithValue }) => {
-      try {
-        const {data: { bookmarks }} = await axios.post(`/api/users/bookmark/${postId}`, {
-            headers: {authorization: token}
-        });
-        return bookmarks;
-      } catch (error) {
-        return rejectWithValue(error.response.data.errors[0]);
-      }
-    }
-  );
-  
-  export const removePostFromBookmarks = createAsyncThunk("posts/removePostFromBookmarks",
-    async (postId, { rejectWithValue }) => {
-      try {
-        const {data: { bookmarks }} = await axios.post(`/api/users/remove-bookmark/${postId}`, {
-            headers: {authorization: token}
-        });
-        return bookmarks;
-      } catch (error) {
-        return rejectWithValue(error.response.data.errors[0]);
-      }
-    }
-  );
-  
   export const commentOnPost = createAsyncThunk("posts/commentOnPost",
     async ({ postId, commentData }, { rejectWithValue }) => {
       try {
@@ -145,12 +107,8 @@ export const createPost = createAsyncThunk("posts/createPost",
     initialState,
     reducers: {},
     extraReducers: {
-      [loginUser.fulfilled]: (state, { payload }) => {
-        state.bookmarks = payload.foundUser.bookmarks;
-      },
       [logoutUser]: (state) => {
         state.posts = [];
-        state.bookmarks = [];
       },
       [getPosts.pending]: (state) => {
         state.isLoading = true;
@@ -279,23 +237,6 @@ export const createPost = createAsyncThunk("posts/createPost",
             isClosable: true,
             duration: 3000
         })
-      },
-      [getBookmarkPosts.pending]: (state) => {
-        state.isLoading = true;
-      },
-      [getBookmarkPosts.fulfilled]: (state, { payload }) => {
-        state.isLoading = false;
-        state.bookmarks = payload;
-      },
-      [getBookmarkPosts.rejected]: (state, { payload }) => {
-        state.isLoading = false;
-        state.postError = payload;
-      },
-      [addPostInBookmarks.fulfilled]: (state, { payload }) => {
-        state.bookmarks = payload.reverse();
-      },
-      [removePostFromBookmarks.fulfilled]: (state, { payload }) => {
-        state.bookmarks = payload.reverse();
       },
       [commentOnPost.fulfilled]: (state, { payload }) => {
         const postIndex = state.posts.findIndex(

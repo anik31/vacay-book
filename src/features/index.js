@@ -4,3 +4,4 @@ export {Feed} from "./post/Feed";
 export {DisplayPost} from "./post/components/DisplayPost";
 export {Explore} from "./post/Explore";
 export {CreatePost} from "./post/components/CreatePost";
+export {Bookmarks} from "./post/Bookmarks";

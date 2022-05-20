@@ -9,7 +9,7 @@ const initialState = {
   isLoading: false
 };
 
-export const getAllUser = createAsyncThunk("post/getAllUSers", async (_, {rejectWithValue}) => {
+export const getAllUser = createAsyncThunk("post/getAllUsers", async (_, {rejectWithValue}) => {
   try {
     const response = await axios.get("/api/users");
     return response.data;
