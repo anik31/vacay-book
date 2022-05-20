@@ -2,16 +2,18 @@ import { Box, Icon, Text, Button, Flex, Stack, useDisclosure } from "@chakra-ui/
 import { NavLink } from "react-router-dom";
 import { MdHome, MdExplore, MdBookmark, MdAccountCircle } from 'react-icons/md';
 import { CreatePost } from "features";
-
-const sidenavData = [
-    { path: "/", icon: MdHome, text: "Feed" },
-    { path: "/explore", icon: MdExplore, text: "Explore" },
-    { path: "/bookmarks", icon: MdBookmark, text: "Bookmarks" },
-    { path: "/profile", icon: MdAccountCircle, text: "Profile" },
-];
+import { useSelector } from "react-redux";
 
 export function Sidenav(){
     const { isOpen, onOpen, onClose } = useDisclosure();
+    const {user} = useSelector(store=>store.auth);
+
+    const sidenavData = [
+        { path: "/", icon: MdHome, text: "Feed" },
+        { path: "/explore", icon: MdExplore, text: "Explore" },
+        { path: "/bookmarks", icon: MdBookmark, text: "Bookmarks" },
+        { path: `/profile/${user.username}`, icon: MdAccountCircle, text: "Profile" },
+    ];
 
     return (
         <>

@@ -8,24 +8,40 @@ import {
     Stack,
     Text,
     useColorModeValue,
-    useDisclosure
+    useDisclosure,
+    Spinner
   } from '@chakra-ui/react';
-import { EditProfile } from 'components';
+import { EditProfile } from './EditProfile';
 import { logoutUser } from 'features/auth/authSlice';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { followUser, unfollowUser } from '../userSlice';
 
-export function DisplayProfile(){
+export function DisplayProfile({value}){
+    const {_id, username, firstName, lastName, profilePic, link, bio, followers, following, posts} = value;
     const { isOpen, onOpen, onClose } = useDisclosure();
     const dispatch = useDispatch();
+    const {user} = useSelector(store=>store.auth);
+    const {isLoading, allUsers} = useSelector(store=>store.user);
+    const currentUser = allUsers.find(({_id})=>_id===user._id);
 
     return (
         <>
         <Center>
-            <Stack
+        {isLoading 
+        ?   <Center my={5}>
+                <Spinner
+                    thickness='4px'
+                    speed='0.65s'
+                    emptyColor='gray.200'
+                    color='cyan.500'
+                    size='xl'
+                />
+            </Center>
+        :   <Stack
                 borderWidth="1px"
                 borderRadius="lg"
                 w={{ sm: '100%', md: '540px', lg: "100%" }}
-                height={{ sm: '476px', md: '20rem', lg: "100%" }}
+                height={{ sm: '476px', md: '20rem' }}
                 direction={{ base: 'column', md: 'row' }}
                 bg={useColorModeValue('white', 'gray.900')}
                 boxShadow={'md'}
@@ -34,9 +50,7 @@ export function DisplayProfile(){
                     <Image
                         objectFit="cover"
                         boxSize="100%"
-                        src={
-                        'https://avatars.githubusercontent.com/u/56336326?v=4'
-                        }
+                        src={profilePic}
                     />
                 </Flex>
                 <Stack
@@ -47,41 +61,42 @@ export function DisplayProfile(){
                 p={1}
                 pt={2}>
                 <Heading fontSize={'2xl'} fontFamily={'body'}>
-                    Aniket Prakash
+                    {`${firstName} ${lastName}`}
                 </Heading>
                 <Text fontWeight={600} color={'gray.500'} size="sm" mb={4}>
-                    @anik31
+                    @{username}
                 </Text>
                 <Text
                     textAlign={'center'}
                     color={useColorModeValue('gray.700', 'gray.400')}
                     px={3}>
-                    Frontend Developer at Nowhere.
+                    {bio}
                 </Text>
-                <Link href={'https://peerlist.io/aniketprakash'} isExternal={true} color={'blue.400'}>https://peerlist.io/aniketprakash</Link>
+                <Link href={link} isExternal={true} color={'blue.400'}>{link}</Link>
                 
                 <Stack direction={'row'} justify={'center'} spacing={6}>
                     <Stack spacing={0} align={'center'}>
-                        <Text fontWeight={600}>3</Text>
+                        <Text fontWeight={600}>{posts}</Text>
                         <Text fontSize={'sm'} color={'gray.500'}>
                             Posts
                         </Text>
                     </Stack>
                     <Stack spacing={0} align={'center'}>
-                        <Text fontWeight={600}>23</Text>
+                        <Text fontWeight={600}>{followers?.length}</Text>
                         <Text fontSize={'sm'} color={'gray.500'}>
                             Followers
                         </Text>
                     </Stack>
                     <Stack spacing={0} align={'center'}>
-                        <Text fontWeight={600}>20</Text>
+                        <Text fontWeight={600}>{following?.length}</Text>
                         <Text fontSize={'sm'} color={'gray.500'}>
                             Following
                         </Text>
                     </Stack>
                 </Stack>
                 
-                <Stack
+                {username===user.username 
+                ? <Stack
                     width={'100%'}
                     mt={'2rem'}
                     direction={'row'}
@@ -117,8 +132,54 @@ export function DisplayProfile(){
                     Logout
                     </Button>
                 </Stack>
+                : 
+                <>
+                {currentUser.following.some(users=>users._id===_id)
+                ?   <Button
+                    width={'50%'}
+                    mt={'2rem'}
+                    padding={2}
+                    fontSize={'sm'}
+                    rounded={'full'}
+                    bg={'cyan.400'}
+                    color={'white'}
+                    boxShadow={
+                        '0px 1px 25px -5px rgb(66 153 225 / 48%), 0 10px 10px -5px rgb(66 153 225 / 43%)'
+                    }
+                    _hover={{
+                        bg: 'cyan.500',
+                    }}
+                    _focus={{
+                        bg: 'cyan.500',
+                    }}
+                    onClick={()=>dispatch(unfollowUser(_id))}>
+                    Unfollow
+                    </Button>
+                :   <Button
+                    width={'50%'}
+                    mt={'2rem'}
+                    padding={2}
+                    fontSize={'sm'}
+                    rounded={'full'}
+                    bg={'cyan.400'}
+                    color={'white'}
+                    boxShadow={
+                        '0px 1px 25px -5px rgb(66 153 225 / 48%), 0 10px 10px -5px rgb(66 153 225 / 43%)'
+                    }
+                    _hover={{
+                        bg: 'cyan.500',
+                    }}
+                    _focus={{
+                        bg: 'cyan.500',
+                    }}
+                    onClick={()=>dispatch(followUser(_id))}>
+                    Follow
+                    </Button>
+                    }
+                    </>
+                }
                 </Stack>
-            </Stack>
+            </Stack>}
         </Center>
         <EditProfile isOpen={isOpen} onClose={onClose} />
         </>

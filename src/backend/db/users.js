@@ -15,7 +15,7 @@ export const users = [
     createdAt: formatDate(),
     updatedAt: formatDate(),
     bio: "The web developer",
-    link: "adarshbalika.netlify.app",
+    link: "https://adarshbalika.netlify.app/",
     profilePic: "https://res.cloudinary.com/vacay-book/image/upload/v1652946516/cld-sample.jpg",
   },
   {
@@ -27,7 +27,7 @@ export const users = [
     createdAt: formatDate(),
     updatedAt: formatDate(),
     bio: "Photographer",
-    link: "google.com",
+    link: "https://google.com/",
     profilePic: "https://res.cloudinary.com/vacay-book/image/upload/v1652949304/profilepic/photo-1652528042257-ebaa90786218_nnfqub.jpg",
   },
   {
@@ -39,7 +39,7 @@ export const users = [
     createdAt: formatDate(),
     updatedAt: formatDate(),
     bio: "Frontend Developer",
-    link: "peerlist.io/aniketprakash",
+    link: "https://peerlist.io/aniketprakash",
     profilePic: "https://res.cloudinary.com/vacay-book/image/upload/v1652949599/profilepic/56336326_w3vnqd.jpg",
   },
   {
@@ -51,7 +51,7 @@ export const users = [
     createdAt: formatDate(),
     updatedAt: formatDate(),
     bio: "Log galat bolte mere bare mein...",
-    link: "google.com",
+    link: "https://google.com/",
     profilePic: "https://res.cloudinary.com/vacay-book/image/upload/v1652949852/profilepic/photo-1652160130353-e104e3bcfe21_kbsffq.jpg",
   },
   {
@@ -63,7 +63,7 @@ export const users = [
     createdAt: formatDate(),
     updatedAt: formatDate(),
     bio: "Papa ki pari",
-    link: "google.com",
+    link: "https://google.com/",
     profilePic: "https://res.cloudinary.com/vacay-book/image/upload/v1652949863/profilepic/photo-1652374968229-a66a1c170c04_rbg3l6.jpg",
   },
 ];

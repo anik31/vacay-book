@@ -13,11 +13,19 @@ import {
     Textarea
 } from '@chakra-ui/react';
 import { useRef, useState } from "react";
+import { useDispatch } from 'react-redux';
+import { editUserInfo } from '../userSlice';
 
 export function EditProfile({isOpen, onClose}){
     const initialRef = useRef();
     const [linkInput, setLinkInput] = useState("");
     const [bioInput, setBioInput] = useState("");
+    const dispatch = useDispatch();
+    
+    const editProfileHandler = () => {
+        dispatch(editUserInfo({link: linkInput, bio: bioInput}));
+        onClose();
+    }
 
     return (
         <Modal isCentered isOpen={isOpen} onClose={onClose} initialFocusRef={initialRef}>
@@ -41,7 +49,7 @@ export function EditProfile({isOpen, onClose}){
                 </FormControl>
             </ModalBody>
             <ModalFooter>
-                <Button mr={3} onClick={onClose} bgColor="cyan.400" color="white" >
+                <Button mr={3} bgColor="cyan.400" color="white" onClick={editProfileHandler}>
                 Save
                 </Button>
                 <Button onClick={onClose}>Cancel</Button>
