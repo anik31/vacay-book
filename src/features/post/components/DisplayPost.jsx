@@ -18,18 +18,20 @@ import {
     MenuItem,
     useDisclosure
 } from '@chakra-ui/react';
-import {MdBookmarkBorder, MdFavoriteBorder, MdFavorite} from "react-icons/md";
+import {MdBookmarkBorder, MdBookmark, MdFavoriteBorder, MdFavorite} from "react-icons/md";
 import { useDispatch, useSelector } from 'react-redux';
 import { Comment } from './Comment';
 import { likePost, disLikePost, commentOnPost, deletePost } from '../postSlice';
 import { useState } from 'react';
 import { HamburgerIcon } from '@chakra-ui/icons';
 import { CreatePost } from './CreatePost';
+import { addPostInBookmarks, removePostFromBookmarks } from '../bookmarkSlice';
 
 export function DisplayPost({post}){
   const {_id, comments, content, createdAt, likes: {likeCount, likedBy}, username} = post;
     const {allUsers} = useSelector(store=>store.user);
     const {user} = useSelector(store=>store.auth);
+    const {bookmarks} = useSelector(store=>store.bookmark);
     const {firstName, lastName, profilePic} = allUsers.find(user=>user.username===username);
     const fullName = `${firstName} ${lastName}`;
     const dispatch = useDispatch();
@@ -120,12 +122,22 @@ export function DisplayPost({post}){
                 }
                 <span>{likeCount} Likes</span>
             </Stack>
-            <IconButton
+
+            {bookmarks.some(id=>id===_id)
+             ? <IconButton
+                icon={<MdBookmark/>}
+                variant="ghost"
+                fontSize="1.5rem"
+                color={'gray.700'}
+                onClick={()=>dispatch(removePostFromBookmarks(_id))}
+              />
+             : <IconButton
                 icon={<MdBookmarkBorder/>}
                 variant="ghost"
                 fontSize="1.5rem"
                 color={'gray.700'}
-            />
+                onClick={()=>dispatch(addPostInBookmarks(_id))}
+            />}
         </Stack>
 
         <Stack direction={'row'} spacing={4} align={'center'} my={2}>
