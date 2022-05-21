@@ -6,6 +6,8 @@ import { useSelector } from "react-redux";
 
 export function Navbar(){
     const {token, user} = useSelector(store=>store.auth);
+    const {allUsers} = useSelector(store=>store.user);
+    const currentUser = allUsers.find(({_id})=>_id===user._id);
 
     return ( 
         <Box as="nav" display="flex" alignItems="center" justifyContent="space-between" 
@@ -19,7 +21,7 @@ export function Navbar(){
             <Wrap>
                 {token && <WrapItem display="flex" alignItems="center" justifyContent="center" gap={2}>
                     <Avatar size='sm' name={`${user.firstName} ${user.lastName}`} 
-                    src={user.profilePic} />
+                    src={currentUser && currentUser.profilePic} />
                     
                     <Link fontSize='1rem' as={RouterLink} to={`/profile/${user.username}`}>Hello, {user.firstName}</Link>
                 </WrapItem> }               
