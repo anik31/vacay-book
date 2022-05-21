@@ -17,7 +17,7 @@ export const posts = [
       dislikedBy: [],
     },
     username: "adarshbalika",
-    createdAt: formatDate(),
+    createdAt: "2021-05-23T10:38:12+05:30",
     updatedAt: formatDate(),
     comments: [
       {
@@ -50,7 +50,7 @@ export const posts = [
       dislikedBy: [],
     },
     username: "johndoe",
-    createdAt: formatDate(),
+    createdAt: "2022-01-25T10:38:12+05:30",
     updatedAt: formatDate(),
     comments: [
       {

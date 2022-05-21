@@ -8,10 +8,13 @@ import { useDispatch, useSelector } from "react-redux";
 import { getAllUser } from "features/profile/userSlice";
 import { getPosts } from "features/post/postSlice";
 import { getBookmarkPosts } from "features/post/bookmarkSlice";
+import {useScrollToTop} from "hooks/useScrollToTop";
 
 function App() {
   const dispatch = useDispatch();
   const {token} = useSelector(store=>store.auth);
+
+  useScrollToTop();
 
   useEffect(()=>{
     if(token){
