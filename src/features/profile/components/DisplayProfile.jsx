@@ -17,12 +17,24 @@ import { useDispatch, useSelector } from 'react-redux';
 import { followUser, unfollowUser } from '../userSlice';
 
 export function DisplayProfile({value}){
-    const {_id, username, firstName, lastName, profilePic, link, bio, followers, following, posts} = value;
     const { isOpen, onOpen, onClose } = useDisclosure();
     const dispatch = useDispatch();
     const {user} = useSelector(store=>store.auth);
     const {isLoading, allUsers} = useSelector(store=>store.user);
+    const {_id, username, firstName, lastName, profilePic, link, bio, followers, following, posts} = value;
     const currentUser = allUsers.find(({_id})=>_id===user._id);
+
+    const followHandler = () => {
+        dispatch(followUser(_id));
+    };
+
+    const unfollowHandler = () => {
+        dispatch(unfollowUser(_id));
+    };
+    
+    const logoutHandler = () => {
+        dispatch(logoutUser());
+    };
 
     return (
         <>
@@ -128,7 +140,7 @@ export function DisplayProfile({value}){
                     _focus={{
                         bg: 'red.500',
                     }}
-                    onClick={()=>dispatch(logoutUser())}>
+                    onClick={logoutHandler}>
                     Logout
                     </Button>
                 </Stack>
@@ -152,7 +164,7 @@ export function DisplayProfile({value}){
                     _focus={{
                         bg: 'cyan.500',
                     }}
-                    onClick={()=>dispatch(unfollowUser(_id))}>
+                    onClick={unfollowHandler}>
                     Unfollow
                     </Button>
                 :   <Button
@@ -172,14 +184,15 @@ export function DisplayProfile({value}){
                     _focus={{
                         bg: 'cyan.500',
                     }}
-                    onClick={()=>dispatch(followUser(_id))}>
+                    onClick={followHandler}>
                     Follow
                     </Button>
                     }
                     </>
                 }
                 </Stack>
-            </Stack>}
+            </Stack>
+            }
         </Center>
         <EditProfile isOpen={isOpen} onClose={onClose} />
         </>

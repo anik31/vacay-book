@@ -1,6 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 import { createStandaloneToast } from '@chakra-ui/toast';
+import { logoutUser } from "features/auth/authSlice";
 
 const toast = createStandaloneToast();
 
@@ -63,6 +64,9 @@ const userSlice = createSlice({
   initialState,
   reducers: {},
   extraReducers: {
+    [logoutUser]: (state) => {
+      state.allUsers = [];
+    },
     [getAllUser.pending]: (state) => {
       state.userStatus = "pending";
       state.isLoading = true;
