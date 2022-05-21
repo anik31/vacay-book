@@ -40,6 +40,11 @@ export function DisplayPost({post}){
     const { isOpen, onOpen, onClose } = useDisclosure();
     const [isEdit, setIsEdit] = useState(false);
 
+    const monthNames = ["Jan", "Feb", "March", "Apr", "May", "June", "July", 
+    "Aug", "Sept", "Oct", "Nov", "Dec"]; 
+    const date = new Date(createdAt);
+    const displayDate = `${monthNames[date.getMonth()]} ${date.getDate()}, ${date.getFullYear()}`;
+
     const commentHandler = () => {
       if(commentInput){
         dispatch(commentOnPost({postId: _id, commentData: {text: commentInput}}));
@@ -80,7 +85,7 @@ export function DisplayPost({post}){
           />
           <Stack direction={'column'} spacing={0} fontSize={'sm'}>
             <Text fontWeight={600}>{fullName}</Text>
-            <Text color={'gray.500'}>Feb 08, 2021</Text>
+            <Text color={'gray.500'}>{displayDate}</Text>
           </Stack>
         </Stack>
         {user.username===username && 
