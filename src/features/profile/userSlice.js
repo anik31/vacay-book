@@ -10,8 +10,6 @@ const initialState = {
   isLoading: false
 };
 
-const token = localStorage.getItem("token");
-
 export const getAllUser = createAsyncThunk("post/getAllUsers", async (_, {rejectWithValue}) => {
   try {
     const response = await axios.get("/api/users");
@@ -24,6 +22,7 @@ export const getAllUser = createAsyncThunk("post/getAllUsers", async (_, {reject
 export const editUserInfo = createAsyncThunk(
   "auth/editUserInfo",
   async (userData, { rejectWithValue }) => {
+    const token = await localStorage.getItem("token");
     try {
       const {data: { user }} = await axios.post("/api/users/edit", { userData }, 
       {headers: {authorization: token}});
@@ -36,9 +35,10 @@ export const editUserInfo = createAsyncThunk(
 
 export const followUser = createAsyncThunk("profile/followUser",
   async (followUserId, { rejectWithValue }) => {
+    const token = await localStorage.getItem("token");
     try {
       const {data: {followUser, user}} = await 
-      axios.post(`/api/users/follow/${followUserId}`, {},{headers: {authorization: token}});
+      axios.post(`/api/users/follow/${followUserId}`, {}, {headers: {authorization: token}});
       return { followUser, user };
     } catch (error) {
       return rejectWithValue(error.response.data.errors[0]);
@@ -48,9 +48,10 @@ export const followUser = createAsyncThunk("profile/followUser",
 
 export const unfollowUser = createAsyncThunk("profile/unfollowUser",
   async (followingUserId, { rejectWithValue }) => {
+    const token = await localStorage.getItem("token");
     try {
       const {data: {followUser, user}} = await 
-      axios.post(`/api/users/unfollow/${followingUserId}`, {},{headers: {authorization: token}});
+      axios.post(`/api/users/unfollow/${followingUserId}`, {}, {headers: {authorization: token}});
       return { followUser, user };
     } catch (error) {
       return rejectWithValue(error.response.data.errors[0]);

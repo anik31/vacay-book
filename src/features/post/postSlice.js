@@ -11,8 +11,6 @@ const initialState = {
     isLoading: false
 };
 
-const token = localStorage.getItem("token");
-
 export const getPosts = createAsyncThunk("posts/getPosts",
     async (_, { rejectWithValue }) => {
       try {
@@ -26,6 +24,7 @@ export const getPosts = createAsyncThunk("posts/getPosts",
 
 export const createPost = createAsyncThunk("posts/createPost",
     async (postData, { rejectWithValue }) => {
+      const token = await localStorage.getItem("token");
       try {
         const {data: { posts }} = await axios.post("/api/posts", { postData }, {
             headers: {authorization: token}
@@ -39,6 +38,7 @@ export const createPost = createAsyncThunk("posts/createPost",
 
   export const editPost = createAsyncThunk("posts/editPost",
     async (postData, { rejectWithValue }) => {
+      const token = await localStorage.getItem("token");
       try {
         const {data: { posts }} = await axios.post(`/api/posts/edit/${postData._id}`, {postData}, {
             headers: {authorization: token}
@@ -52,6 +52,7 @@ export const createPost = createAsyncThunk("posts/createPost",
     
   export const deletePost = createAsyncThunk("posts/deletePost",
     async (postId, { rejectWithValue }) => {
+      const token = await localStorage.getItem("token");
       try {
         const {data: { posts }} = await axios.delete(`/api/posts/${postId}`, {
             headers: {authorization: token}
@@ -65,6 +66,7 @@ export const createPost = createAsyncThunk("posts/createPost",
   
   export const likePost = createAsyncThunk("posts/likePost",
     async (postId, { rejectWithValue }) => {
+      const token = await localStorage.getItem("token");
       try {
         const {data: { posts }} = await axios.post(`/api/posts/like/${postId}`,{} ,
           {headers: {authorization: token}}
@@ -78,6 +80,7 @@ export const createPost = createAsyncThunk("posts/createPost",
   
   export const disLikePost = createAsyncThunk("posts/disLikePost",
     async (postId, { rejectWithValue }) => {
+      const token = await localStorage.getItem("token");
       try {
         const {data: { posts }} = await axios.post(`/api/posts/dislike/${postId}`,{}, {
             headers: {authorization: token}
@@ -91,6 +94,7 @@ export const createPost = createAsyncThunk("posts/createPost",
   
   export const commentOnPost = createAsyncThunk("posts/commentOnPost",
     async ({ postId, commentData }, { rejectWithValue }) => {
+      const token = await localStorage.getItem("token");
       try {
         const {data: { comments }} = await axios.post(`/api/comments/add/${postId}`, {commentData}, {
             headers: {authorization: token}

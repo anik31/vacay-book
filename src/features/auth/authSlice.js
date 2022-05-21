@@ -52,7 +52,7 @@ const authSlice = createSlice({
         state.status = "fulfilled";
         state.token = action.payload.encodedToken;
         state.user = action.payload.foundUser;
-        localStorage.setItem("token", state.token);
+        localStorage.setItem("token", action.payload.encodedToken);
         toast({
             title: "Logged in successfully",
             status: "success",
@@ -79,7 +79,7 @@ const authSlice = createSlice({
         state.status = "fulfilled";
         state.token = action.payload.encodedToken;
         state.user = action.payload.createdUser;
-        localStorage.setItem("token", state.token);
+        localStorage.setItem("token", action.payload.encodedToken);
         toast({
             title: "Signup successful",
             status: "success",

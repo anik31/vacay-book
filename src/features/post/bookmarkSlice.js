@@ -10,10 +10,9 @@ const initialState = {
     bookmarks: [],
 }
 
-const token = localStorage.getItem("token");
-
 export const getBookmarkPosts = createAsyncThunk("posts/getBookmarkPosts",
     async (_, { rejectWithValue }) => {
+      const token = await localStorage.getItem("token");
       try {
         const {data: { bookmarks }} = await axios.get("/api/users/bookmark", {
             headers: {authorization: token}
@@ -27,6 +26,7 @@ export const getBookmarkPosts = createAsyncThunk("posts/getBookmarkPosts",
   
   export const addPostInBookmarks = createAsyncThunk("posts/addPostInBookmarks",
     async (postId, { rejectWithValue }) => {
+      const token = await localStorage.getItem("token");
       try {
         const {data: { bookmarks }} = await axios.post(`/api/users/bookmark/${postId}`,{}, {
             headers: {authorization: token}
@@ -40,6 +40,7 @@ export const getBookmarkPosts = createAsyncThunk("posts/getBookmarkPosts",
   
   export const removePostFromBookmarks = createAsyncThunk("posts/removePostFromBookmarks",
     async (postId, { rejectWithValue }) => {
+      const token = await localStorage.getItem("token");
       try {
         const {data: { bookmarks }} = await axios.post(`/api/users/remove-bookmark/${postId}`, {},{
             headers: {authorization: token}

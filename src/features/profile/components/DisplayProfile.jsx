@@ -146,7 +146,7 @@ export function DisplayProfile({value}){
                 </Stack>
                 : 
                 <>
-                {currentUser.following.some(users=>users._id===_id)
+                {currentUser && currentUser?.following.some(users=>users._id===_id)
                 ?   <Button
                     width={'50%'}
                     mt={'2rem'}
