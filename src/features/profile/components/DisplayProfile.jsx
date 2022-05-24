@@ -9,7 +9,8 @@ import {
     Text,
     useColorModeValue,
     useDisclosure,
-    Spinner
+    Spinner,
+    useColorMode
   } from '@chakra-ui/react';
 import { EditProfile } from './EditProfile';
 import { logoutUser } from 'features/auth/authSlice';
@@ -23,6 +24,7 @@ export function DisplayProfile({value}){
     const {isLoading, allUsers} = useSelector(store=>store.user);
     const {_id, username, firstName, lastName, profilePic, link, bio, followers, following, posts} = value;
     const currentUser = allUsers.find(({_id})=>_id===user._id);
+    const { colorMode } = useColorMode();
 
     const followHandler = () => {
         dispatch(followUser(_id));
@@ -131,8 +133,9 @@ export function DisplayProfile({value}){
                     rounded={'full'}
                     bg={'red.400'}
                     color={'white'}
-                    boxShadow={
-                        '0px 1px 25px -5px rgb(66 153 225 / 48%), 0 10px 10px -5px rgb(66 153 225 / 43%)'
+                    boxShadow={colorMode==="light"
+                    ?   '0px 1px 25px -5px rgb(66 153 225 / 48%), 0 10px 10px -5px rgb(66 153 225 / 43%)'
+                    :   ""
                     }
                     _hover={{
                         bg: 'red.500',
@@ -155,8 +158,9 @@ export function DisplayProfile({value}){
                     rounded={'full'}
                     bg={'cyan.400'}
                     color={'white'}
-                    boxShadow={
-                        '0px 1px 25px -5px rgb(66 153 225 / 48%), 0 10px 10px -5px rgb(66 153 225 / 43%)'
+                    boxShadow={colorMode==="light"
+                    ?   '0px 1px 25px -5px rgb(66 153 225 / 48%), 0 10px 10px -5px rgb(66 153 225 / 43%)'
+                    :   ""
                     }
                     _hover={{
                         bg: 'cyan.500',
@@ -175,8 +179,9 @@ export function DisplayProfile({value}){
                     rounded={'full'}
                     bg={'cyan.400'}
                     color={'white'}
-                    boxShadow={
-                        '0px 1px 25px -5px rgb(66 153 225 / 48%), 0 10px 10px -5px rgb(66 153 225 / 43%)'
+                    boxShadow={colorMode==="light"
+                    ?   '0px 1px 25px -5px rgb(66 153 225 / 48%), 0 10px 10px -5px rgb(66 153 225 / 43%)'
+                    :   ""
                     }
                     _hover={{
                         bg: 'cyan.500',

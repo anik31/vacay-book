@@ -1,6 +1,6 @@
 import { Link as RouterLink } from "react-router-dom";
-import { Avatar, Box, Image, Wrap, WrapItem, Link, Button } from '@chakra-ui/react';
-import { MoonIcon } from '@chakra-ui/icons';
+import { Avatar, Box, Image, Wrap, WrapItem, Link, Button, useColorMode } from '@chakra-ui/react';
+import { MoonIcon, SunIcon } from '@chakra-ui/icons';
 import { logo } from "assets";
 import { useSelector } from "react-redux";
 
@@ -8,6 +8,7 @@ export function Navbar(){
     const {token, user} = useSelector(store=>store.auth);
     const {allUsers} = useSelector(store=>store.user);
     const currentUser = allUsers.find(({_id})=>_id===user._id);
+    const { colorMode, toggleColorMode } = useColorMode();
 
     return ( 
         <Box as="nav" display="flex" alignItems="center" justifyContent="space-between" 
@@ -26,7 +27,12 @@ export function Navbar(){
                     <Link fontSize='1rem' as={RouterLink} to={`/profile/${user.username}`}>Hello, {user.firstName}</Link>
                 </WrapItem> }               
                 <WrapItem>
-                    <Button variant='ghost'><MoonIcon w={5} h={5} color='gray.500' /></Button>
+                    <Button variant='ghost' onClick={toggleColorMode}>
+                        {colorMode==="light"
+                        ?   <MoonIcon w={5} h={5} color='gray.500' />
+                        :   <SunIcon w={5} h={5} color='gray.500' />
+                        }
+                    </Button>
                 </WrapItem>
             </Wrap>
         </Box>
