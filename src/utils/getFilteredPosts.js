@@ -1,5 +1,5 @@
-export function getFilteredPosts(filter, feedPosts){
-    switch(filter){
+export function getFilteredPosts(filterBy, feedPosts){
+    switch(filterBy){
         case "trending":
             return [...feedPosts]
             .filter(post=>post.likes.likeCount>0)
