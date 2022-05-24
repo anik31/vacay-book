@@ -83,13 +83,6 @@ export const getBookmarkPosts = createAsyncThunk("posts/getBookmarkPosts",
       },
       [addPostInBookmarks.fulfilled]: (state, { payload }) => {
         state.bookmarks = payload.reverse();
-        toast({
-            title: `Post bookmarked`,
-            status: "success",
-            position: "top-right",
-            isClosable: true,
-            duration: 3000
-        })
       },
       [addPostInBookmarks.rejected]: (state, { payload }) => {
         state.error = payload;
@@ -103,13 +96,6 @@ export const getBookmarkPosts = createAsyncThunk("posts/getBookmarkPosts",
       },
       [removePostFromBookmarks.fulfilled]: (state, { payload }) => {
         state.bookmarks = payload.reverse();
-        toast({
-            title: `Post removed from bookmarks`,
-            status: "info",
-            position: "top-right",
-            isClosable: true,
-            duration: 3000
-        })
       },
       [removePostFromBookmarks.rejected]: (state, { payload }) => {
         state.error = payload;

@@ -21,7 +21,7 @@ export function Comment({comment: {text, username}}){
                 />
                 <Text fontWeight={600}>{fullName}</Text>
             </Stack>
-            <Text color={'gray.500'}>{text}</Text>
+            <Text>{text}</Text>
         </Stack>
     );
 };

@@ -16,7 +16,7 @@ export const users = [
     updatedAt: formatDate(),
     bio: "The web developer",
     link: "https://adarshbalika.netlify.app/",
-    profilePic: "https://res.cloudinary.com/vacay-book/image/upload/v1652946516/cld-sample.jpg",
+    profilePic: "https://res.cloudinary.com/anik-vacay/image/upload/v1652946516/cld-sample.jpg",
   },
   {
     _id: uuid(),
@@ -28,7 +28,7 @@ export const users = [
     updatedAt: formatDate(),
     bio: "Photographer",
     link: "https://google.com/",
-    profilePic: "https://res.cloudinary.com/vacay-book/image/upload/v1652949304/profilepic/photo-1652528042257-ebaa90786218_nnfqub.jpg",
+    profilePic: "https://res.cloudinary.com/anik-vacay/image/upload/v1652949304/profilepic/photo-1652528042257-ebaa90786218_nnfqub.jpg",
   },
   {
     _id: uuid(),
@@ -40,7 +40,7 @@ export const users = [
     updatedAt: formatDate(),
     bio: "Frontend Developer",
     link: "https://peerlist.io/aniketprakash",
-    profilePic: "https://res.cloudinary.com/vacay-book/image/upload/v1652949599/profilepic/56336326_w3vnqd.jpg",
+    profilePic: "https://res.cloudinary.com/anik-vacay/image/upload/v1652949599/profilepic/56336326_w3vnqd.jpg",
   },
   {
     _id: uuid(),
@@ -52,7 +52,7 @@ export const users = [
     updatedAt: formatDate(),
     bio: "Log galat bolte mere bare mein...",
     link: "https://google.com/",
-    profilePic: "https://res.cloudinary.com/vacay-book/image/upload/v1652949852/profilepic/photo-1652160130353-e104e3bcfe21_kbsffq.jpg",
+    profilePic: "https://res.cloudinary.com/anik-vacay/image/upload/v1652949852/profilepic/photo-1652160130353-e104e3bcfe21_kbsffq.jpg",
   },
   {
     _id: uuid(),
@@ -64,6 +64,6 @@ export const users = [
     updatedAt: formatDate(),
     bio: "Papa ki pari",
     link: "https://google.com/",
-    profilePic: "https://res.cloudinary.com/vacay-book/image/upload/v1652949863/profilepic/photo-1652374968229-a66a1c170c04_rbg3l6.jpg",
+    profilePic: "https://res.cloudinary.com/anik-vacay/image/upload/v1652949863/profilepic/photo-1652374968229-a66a1c170c04_rbg3l6.jpg",
   },
 ];

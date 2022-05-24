@@ -7,10 +7,13 @@ import {
     MenuButton,
     MenuList,
     MenuItem,
-    Button 
+    Button, 
+    Box,
+    Text
 } from '@chakra-ui/react';
 import { UpDownIcon } from '@chakra-ui/icons'
 import { useState } from "react";
+import { getFilteredPosts } from "utils";
 
 export function Feed(){
     const {user} = useSelector(store=>store.auth);
@@ -23,19 +26,7 @@ export function Feed(){
     || currentUser.following.some(followingUser=>followingUser.username===username));
 
     if(filter){
-        switch(filter){
-            case "trending":
-                feedPosts = [...feedPosts]
-                .filter(post=>post.likes.likeCount>0)
-                .sort((a,b)=>b.likes.likeCount - a.likes.likeCount);
-                break;
-            case "oldest":
-                feedPosts = [...feedPosts].sort((a,b)=>new Date(a.createdAt) - new Date(b.createdAt));
-                break;
-            default:
-                feedPosts = [...feedPosts];
-                break;
-        }
+        feedPosts = getFilteredPosts(filter, feedPosts);
     }
 
     return (
@@ -51,6 +42,7 @@ export function Feed(){
             />
         </Center>   
         : <>
+        <Box>
         <Menu>
           <MenuButton
             as={Button}
@@ -64,7 +56,11 @@ export function Feed(){
             <MenuItem onClick={()=>setFilter("trending")}>Trending</MenuItem>
           </MenuList>
         </Menu>
-        {feedPosts.map(post=><DisplayPost key={post._id} post={post} />)}
+        </Box>
+        {feedPosts.length>0
+        ?   feedPosts.map(post=><DisplayPost key={post._id} post={post} />)
+        :   <Text align="center" fontSize="1.5rem" mt={3} mb={2}>No Posts Found</Text>
+        }
         </>
         }
         </>

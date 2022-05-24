@@ -1,6 +1,6 @@
 import { DisplayPost } from "./components/DisplayPost";
 import { useSelector } from "react-redux";
-import { Center, Spinner } from '@chakra-ui/react';
+import { Center, Spinner, Text } from '@chakra-ui/react';
 
 export function Bookmarks(){
     const {bookmarks, isLoading} = useSelector(store=>store.bookmark);
@@ -20,7 +20,14 @@ export function Bookmarks(){
             />
         </Center>
         
-        : bookmarkPosts.map(post=><DisplayPost key={post._id} post={post} />)}
+        :
+        <> 
+        {bookmarkPosts.length>0
+        ?   bookmarkPosts.map(post=><DisplayPost key={post._id} post={post} />)
+        :   <Text align="center" fontSize="1.5rem" mt={3} mb={2}>No Bookmarks Found</Text>
+        }
+        </>
+        }
         </>
     );
 }

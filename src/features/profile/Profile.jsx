@@ -2,7 +2,7 @@ import { DisplayProfile } from "./components/DisplayProfile";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { DisplayPost } from "features";
-import { Center, Spinner } from '@chakra-ui/react';
+import { Center, Spinner, Text } from '@chakra-ui/react';
 
 export function Profile(){
     const {allUsers} = useSelector(store=>store.user);
@@ -27,7 +27,14 @@ export function Profile(){
             />
         </Center>
         
-        : userPosts.map(post=><DisplayPost key={post._id} post={post} />)}
+        : 
+        <>
+        {userPosts.length>0
+        ?   userPosts.map(post=><DisplayPost key={post._id} post={post} />)
+        :   <Text align="center" fontSize="1.5rem" mt={6} mb={2}>No Posts Found</Text>
+        }
+        </>
+        }
         </>
     );
 }

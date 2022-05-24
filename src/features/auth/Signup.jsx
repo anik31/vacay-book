@@ -58,11 +58,10 @@ export function Signup(){
 
     return (
         <Flex
-        minH={'90vh'}
         align={'center'}
         justify={'center'}
         bg={useColorModeValue('gray.50', 'gray.800')}>
-            <Stack spacing={8} mx={'auto'} maxW={'lg'} px={6}>
+            <Stack spacing={8} mx={'auto'} maxW={'lg'} px={6} py={10}>
                 <Stack align={'center'}>
                     <Heading fontSize={'4xl'} textAlign={'center'}>
                         Sign up

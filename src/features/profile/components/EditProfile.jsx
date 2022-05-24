@@ -14,6 +14,7 @@ import {
 } from '@chakra-ui/react';
 import { useRef, useState } from "react";
 import { useDispatch } from 'react-redux';
+import { getImageUrl } from 'utils';
 import { editUserInfo } from '../userSlice';
 
 export function EditProfile({isOpen, onClose}){
@@ -24,29 +25,10 @@ export function EditProfile({isOpen, onClose}){
     const [isUploadingImage, setIsUploadingImage] = useState(false);
     const dispatch = useDispatch();
     
-    const apiCloudinary =  async(file) => {
-        const formdata = new FormData();
-
-        formdata.append("file", file);
-        formdata.append("cloud_name", process.env.REACT_APP_CLOUDINARY_CLOUD_NAME);
-        formdata.append("upload_preset", process.env.REACT_APP_CLOUDINARY_UPLOAD_PRESET);
-      
-        let res = await fetch(
-          `https://api.cloudinary.com/v1_1/${process.env.REACT_APP_CLOUDINARY_CLOUD_NAME}/image/upload`,
-          {
-            method: "post",
-            mode: "cors",
-            body: formdata,
-          }
-        );
-        let json = await res.json();
-        return json.secure_url;
-      }
-
     const imageUpload = async({target}) => {
         setIsUploadingImage(true);
         const [file] = target.files;
-        const mediaUrl = await apiCloudinary(file);
+        const mediaUrl = await getImageUrl(file);
         setProfilePicLink(mediaUrl);
         setIsUploadingImage(false);
     }

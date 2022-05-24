@@ -26,6 +26,8 @@ import { useState } from 'react';
 import { HamburgerIcon } from '@chakra-ui/icons';
 import { CreatePost } from './CreatePost';
 import { addPostInBookmarks, removePostFromBookmarks } from '../bookmarkSlice';
+import { Link } from 'react-router-dom';
+import { getCustomDate } from 'utils';
 
 export function DisplayPost({post}){
   const {_id, comments, content, createdAt, likes: {likeCount, likedBy}, username} = post;
@@ -40,10 +42,7 @@ export function DisplayPost({post}){
     const { isOpen, onOpen, onClose } = useDisclosure();
     const [isEdit, setIsEdit] = useState(false);
 
-    const monthNames = ["Jan", "Feb", "March", "Apr", "May", "June", "July", 
-    "Aug", "Sept", "Oct", "Nov", "Dec"]; 
-    const date = new Date(createdAt);
-    const displayDate = `${monthNames[date.getMonth()]} ${date.getDate()}, ${date.getFullYear()}`;
+    const displayDate = getCustomDate(createdAt);
 
     const commentHandler = () => {
       if(commentInput){
@@ -78,6 +77,7 @@ export function DisplayPost({post}){
         boxShadow={'md'}
         >
         <HStack justify="space-between">
+        <Link to={`/profile/${username}`}>
         <Stack direction={'row'} spacing={4} align={'center'}>
           <Avatar
             src={profilePic}
@@ -88,7 +88,9 @@ export function DisplayPost({post}){
             <Text color={'gray.500'}>{displayDate}</Text>
           </Stack>
         </Stack>
+        </Link>
         {user.username===username && 
+        <Box>
         <Menu>
           <MenuButton
             as={IconButton}
@@ -101,10 +103,11 @@ export function DisplayPost({post}){
             <MenuItem onClick={()=>dispatch(deletePost(_id))}>Delete</MenuItem>
           </MenuList>
         </Menu>
+        </Box>
         }
         </HStack>
         <Stack my={2}>
-            <Text color={'gray.500'}>{content}</Text>
+            <Text>{content}</Text>
         </Stack>
 
         <Stack direction={'row'} spacing={4} align={'center'}>
@@ -114,14 +117,12 @@ export function DisplayPost({post}){
                     icon={<MdFavorite/>}
                     variant="ghost"
                     fontSize="1.5rem"
-                    color={'gray.700'}
                     onClick={()=>dispatch(disLikePost(_id))}
                   />
                 : <IconButton
                     icon={<MdFavoriteBorder/>}
                     variant="ghost"
                     fontSize="1.5rem"
-                    color={'gray.700'}
                     onClick={()=>dispatch(likePost(_id))}
                   />
                 }
@@ -133,14 +134,12 @@ export function DisplayPost({post}){
                 icon={<MdBookmark/>}
                 variant="ghost"
                 fontSize="1.5rem"
-                color={'gray.700'}
                 onClick={()=>dispatch(removePostFromBookmarks(_id))}
               />
              : <IconButton
                 icon={<MdBookmarkBorder/>}
                 variant="ghost"
                 fontSize="1.5rem"
-                color={'gray.700'}
                 onClick={()=>dispatch(addPostInBookmarks(_id))}
             />}
         </Stack>

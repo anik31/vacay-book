@@ -204,13 +204,6 @@ export const createPost = createAsyncThunk("posts/createPost",
       },
       [likePost.fulfilled]: (state, { payload }) => {
         state.posts = payload.reverse();
-        toast({
-            title: `Post liked`,
-            status: "success",
-            position: "top-right",
-            isClosable: true,
-            duration: 3000
-        })
       },
       [likePost.rejected]: (state, { payload }) => {
         state.error = payload;
@@ -224,13 +217,6 @@ export const createPost = createAsyncThunk("posts/createPost",
       },
       [disLikePost.fulfilled]: (state, { payload }) => {
         state.posts = payload.reverse();
-        toast({
-            title: `Post disliked`,
-            status: "info",
-            position: "top-right",
-            isClosable: true,
-            duration: 3000
-        })
       },
       [disLikePost.rejected]: (state, { payload }) => {
         state.error = payload;
@@ -247,13 +233,6 @@ export const createPost = createAsyncThunk("posts/createPost",
           (post) => post._id === payload.postId
         );
         state.posts[postIndex].comments = payload.comments;
-        toast({
-          title: `Comment added`,
-          status: "success",
-          position: "top-right",
-          isClosable: true,
-          duration: 3000
-        })
       },[commentOnPost.rejected]: (state, { payload }) => {
         state.error = payload;
         toast({

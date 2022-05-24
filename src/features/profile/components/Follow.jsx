@@ -16,7 +16,8 @@ export function Follow(){
                 <Divider />
                 <Stack spacing={4} direction="column" align="center">
                 {allUsers.filter(({_id})=>user._id!==_id).map(({_id, username, firstName, lastName, followers, profilePic})=>
-                    <Stack color="gray.600" direction="row" align="center" spacing={2} key={_id}>
+                    <Stack direction="row" align="center" justify="space-between" 
+                    spacing={2} key={_id} w="100%">
                         <Link to={`/profile/${username}`}>
                         <Stack spacing={2} direction="row" align="center">
                             <Avatar size="sm" name={`${firstName} ${lastName}`} 
