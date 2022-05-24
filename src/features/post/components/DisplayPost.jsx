@@ -27,6 +27,7 @@ import { HamburgerIcon } from '@chakra-ui/icons';
 import { CreatePost } from './CreatePost';
 import { addPostInBookmarks, removePostFromBookmarks } from '../bookmarkSlice';
 import { Link } from 'react-router-dom';
+import { getCustomDate } from 'utils';
 
 export function DisplayPost({post}){
   const {_id, comments, content, createdAt, likes: {likeCount, likedBy}, username} = post;
@@ -41,10 +42,7 @@ export function DisplayPost({post}){
     const { isOpen, onOpen, onClose } = useDisclosure();
     const [isEdit, setIsEdit] = useState(false);
 
-    const monthNames = ["Jan", "Feb", "March", "Apr", "May", "June", "July", 
-    "Aug", "Sept", "Oct", "Nov", "Dec"]; 
-    const date = new Date(createdAt);
-    const displayDate = `${monthNames[date.getMonth()]} ${date.getDate()}, ${date.getFullYear()}`;
+    const displayDate = getCustomDate(createdAt);
 
     const commentHandler = () => {
       if(commentInput){

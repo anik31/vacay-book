@@ -13,6 +13,7 @@ import {
 } from '@chakra-ui/react';
 import { UpDownIcon } from '@chakra-ui/icons'
 import { useState } from "react";
+import { getFilteredPosts } from "utils";
 
 export function Feed(){
     const {user} = useSelector(store=>store.auth);
@@ -25,19 +26,7 @@ export function Feed(){
     || currentUser.following.some(followingUser=>followingUser.username===username));
 
     if(filter){
-        switch(filter){
-            case "trending":
-                feedPosts = [...feedPosts]
-                .filter(post=>post.likes.likeCount>0)
-                .sort((a,b)=>b.likes.likeCount - a.likes.likeCount);
-                break;
-            case "oldest":
-                feedPosts = [...feedPosts].sort((a,b)=>new Date(a.createdAt) - new Date(b.createdAt));
-                break;
-            default:
-                feedPosts = [...feedPosts];
-                break;
-        }
+        feedPosts = getFilteredPosts(filter, feedPosts);
     }
 
     return (
