@@ -8,7 +8,8 @@ import {
     MenuList,
     MenuItem,
     Button, 
-    Box
+    Box,
+    Text
 } from '@chakra-ui/react';
 import { UpDownIcon } from '@chakra-ui/icons'
 import { useState } from "react";
@@ -67,7 +68,10 @@ export function Feed(){
           </MenuList>
         </Menu>
         </Box>
-        {feedPosts.map(post=><DisplayPost key={post._id} post={post} />)}
+        {feedPosts.length>0
+        ?   feedPosts.map(post=><DisplayPost key={post._id} post={post} />)
+        :   <Text align="center" fontSize="1.5rem" mt={3} mb={2}>No Posts Found</Text>
+        }
         </>
         }
         </>

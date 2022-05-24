@@ -1,6 +1,6 @@
 import { DisplayPost } from "./components/DisplayPost";
 import { useSelector } from "react-redux";
-import { Center, Spinner } from '@chakra-ui/react';
+import { Center, Spinner, Text } from '@chakra-ui/react';
 
 export function Explore(){
     const {posts, isLoading} = useSelector(store=>store.post);
@@ -18,7 +18,14 @@ export function Explore(){
             />
         </Center>
         
-        : posts.map(post=><DisplayPost key={post._id} post={post} />)}
+        :
+        <> 
+        {posts.length>0
+        ?   posts.map(post=><DisplayPost key={post._id} post={post} />)
+        :   <Text align="center" fontSize="1.5rem" mt={3} mb={2}>No Posts Found</Text>
+        }
+        </>
+        }
         </>
     );
 }
