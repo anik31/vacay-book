@@ -26,6 +26,7 @@ import { useState } from 'react';
 import { HamburgerIcon } from '@chakra-ui/icons';
 import { CreatePost } from './CreatePost';
 import { addPostInBookmarks, removePostFromBookmarks } from '../bookmarkSlice';
+import { Link } from 'react-router-dom';
 
 export function DisplayPost({post}){
   const {_id, comments, content, createdAt, likes: {likeCount, likedBy}, username} = post;
@@ -78,6 +79,7 @@ export function DisplayPost({post}){
         boxShadow={'md'}
         >
         <HStack justify="space-between">
+        <Link to={`/profile/${username}`}>
         <Stack direction={'row'} spacing={4} align={'center'}>
           <Avatar
             src={profilePic}
@@ -88,6 +90,7 @@ export function DisplayPost({post}){
             <Text color={'gray.500'}>{displayDate}</Text>
           </Stack>
         </Stack>
+        </Link>
         {user.username===username && 
         <Box>
         <Menu>
