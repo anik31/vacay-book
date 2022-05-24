@@ -7,7 +7,8 @@ import {
     MenuButton,
     MenuList,
     MenuItem,
-    Button 
+    Button, 
+    Box
 } from '@chakra-ui/react';
 import { UpDownIcon } from '@chakra-ui/icons'
 import { useState } from "react";
@@ -51,6 +52,7 @@ export function Feed(){
             />
         </Center>   
         : <>
+        <Box>
         <Menu>
           <MenuButton
             as={Button}
@@ -64,6 +66,7 @@ export function Feed(){
             <MenuItem onClick={()=>setFilter("trending")}>Trending</MenuItem>
           </MenuList>
         </Menu>
+        </Box>
         {feedPosts.map(post=><DisplayPost key={post._id} post={post} />)}
         </>
         }

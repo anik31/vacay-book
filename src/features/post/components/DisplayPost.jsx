@@ -89,6 +89,7 @@ export function DisplayPost({post}){
           </Stack>
         </Stack>
         {user.username===username && 
+        <Box>
         <Menu>
           <MenuButton
             as={IconButton}
@@ -101,6 +102,7 @@ export function DisplayPost({post}){
             <MenuItem onClick={()=>dispatch(deletePost(_id))}>Delete</MenuItem>
           </MenuList>
         </Menu>
+        </Box>
         }
         </HStack>
         <Stack my={2}>
