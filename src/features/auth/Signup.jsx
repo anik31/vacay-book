@@ -66,7 +66,7 @@ export function Signup(){
                     <Heading fontSize={'4xl'} textAlign={'center'}>
                         Sign up
                     </Heading>
-                    <Text fontSize={'lg'} color={'gray.600'}>
+                    <Text fontSize={'lg'} color={useColorModeValue('gray.600','')}>
                     to enjoy our social media application ✌️
                     </Text>
                 </Stack>

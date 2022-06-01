@@ -61,7 +61,7 @@ export function Login(){
             <Stack spacing={8} mx={'auto'} maxW={'lg'} py={6} px={6}>
                 <Stack align={'center'}>
                     <Heading fontSize={'4xl'}>Sign in to your account</Heading>
-                    <Text fontSize={'lg'} color={'gray.600'}>
+                    <Text fontSize={'lg'} color={useColorModeValue('gray.600','')}>
                         to enjoy our social media application ✌️
                     </Text>
                 </Stack>

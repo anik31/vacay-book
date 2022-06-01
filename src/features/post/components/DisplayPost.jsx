@@ -69,7 +69,7 @@ export function DisplayPost({post}){
       <Box
         w={'full'}
         bg={useColorModeValue('white', 'gray.900')}
-        border='1px' borderColor='gray.200'
+        border='1px' borderColor={useColorModeValue('gray.200','gray.600')}
         rounded={'md'}
         px={5}
         py={4}
@@ -117,6 +117,7 @@ export function DisplayPost({post}){
                     icon={<MdFavorite/>}
                     variant="ghost"
                     fontSize="1.5rem"
+                    color={"#f91880"}
                     onClick={()=>dispatch(disLikePost(_id))}
                   />
                 : <IconButton
