@@ -14,6 +14,7 @@ import {
 } from '@chakra-ui/react';
 import { useRef, useState } from "react";
 import { useDispatch } from 'react-redux';
+import { throttle } from 'utils';
 import { createPost, editPost } from '../postSlice';
 
 export function CreatePost({isOpen, onClose, editPostData, setIsEdit}){
@@ -22,7 +23,7 @@ export function CreatePost({isOpen, onClose, editPostData, setIsEdit}){
     const toast = useToast();
     const dispatch = useDispatch();
 
-    const createPostHandler = () => {
+    const createAPost = () => {
         if(editPostData){
             dispatch(editPost({...editPostData, content: postInput}));
             setIsEdit(false);
@@ -38,7 +39,10 @@ export function CreatePost({isOpen, onClose, editPostData, setIsEdit}){
                 duration: 3000
             })
         }
+        setPostInput("");
     };
+
+    const createPostHandler = throttle(createAPost,1000);
 
     return (
         <Modal isCentered isOpen={isOpen} onClose={onClose} initialFocusRef={initialRef}>

@@ -16,6 +16,7 @@ import { EditProfile } from './EditProfile';
 import { logoutUser } from 'features/auth/authSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { followUser, unfollowUser } from '../userSlice';
+import { throttle } from 'utils';
 
 export function DisplayProfile({value}){
     const { isOpen, onOpen, onClose } = useDisclosure();
@@ -28,14 +29,12 @@ export function DisplayProfile({value}){
 
     const defaultProfileData = {profilePic, link, bio};
 
-    const followHandler = () => {
-        dispatch(followUser(_id));
-    };
+    const followAUser = () => dispatch(followUser(_id));
+    const followHandler = throttle(followAUser,1000);
 
-    const unfollowHandler = () => {
-        dispatch(unfollowUser(_id));
-    };
-    
+    const unfollowAUser = () => dispatch(unfollowUser(_id));
+    const unfollowHandler = throttle(unfollowAUser,1000);
+
     const logoutHandler = () => {
         dispatch(logoutUser());
     };
@@ -170,7 +169,7 @@ export function DisplayProfile({value}){
                     _focus={{
                         bg: 'cyan.500',
                     }}
-                    onClick={unfollowHandler}>
+                    onClick={()=>unfollowHandler()}>
                     Unfollow
                     </Button>
                 :   <Button
@@ -191,7 +190,7 @@ export function DisplayProfile({value}){
                     _focus={{
                         bg: 'cyan.500',
                     }}
-                    onClick={followHandler}>
+                    onClick={()=>followHandler()}>
                     Follow
                     </Button>
                     }
