@@ -11,8 +11,8 @@ export function Comment({comment: {text, username}}){
     const fullName = firstName + " " + lastName;
 
     return (
-        <Stack direction={'column'} spacing={1} mb={2} 
-        border='1px' borderColor='gray.200'rounded={'md'} py={2} px={3}>
+        <Stack direction={'column'} spacing={1} mb={1} 
+         py={1} px={3}>
             <Stack direction={'row'} spacing={1} align={'center'}>
                 <Avatar
                     src={profilePic}

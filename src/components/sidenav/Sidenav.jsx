@@ -20,7 +20,7 @@ export function Sidenav(){
         <>
         <Box as="nav">
             <Stack direction="column" spacing={5} 
-            fontSize="1.5rem" pos="sticky" top="5.5rem">
+            fontSize="1.4rem" pos="sticky" top="5.5rem">
                 {sidenavData.map(navItem=>
                     <NavLink key={navItem.path} color="cyan.400"  to={navItem.path}>
                         {({isActive}) => 

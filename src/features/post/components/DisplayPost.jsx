@@ -65,7 +65,7 @@ export function DisplayPost({post}){
 
     return (
       <>
-    <Center py={5}>
+    <Center py={3}>
       <Box
         w={'full'}
         bg={useColorModeValue('white', 'gray.900')}
@@ -126,7 +126,7 @@ export function DisplayPost({post}){
                     onClick={()=>dispatch(likePost(_id))}
                   />
                 }
-                <span>{likeCount} Likes</span>
+                {likeCount && <span>{likeCount}</span>}
             </Stack>
 
             {bookmarks.some(id=>id===_id)
