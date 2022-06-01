@@ -67,7 +67,7 @@ export function Signup(){
                         Sign up
                     </Heading>
                     <Text fontSize={'lg'} color={'gray.600'}>
-                        to enjoy all of our cool features ✌️
+                    to enjoy our social media application ✌️
                     </Text>
                 </Stack>
                 <Box

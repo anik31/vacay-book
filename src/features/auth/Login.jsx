@@ -62,7 +62,7 @@ export function Login(){
                 <Stack align={'center'}>
                     <Heading fontSize={'4xl'}>Sign in to your account</Heading>
                     <Text fontSize={'lg'} color={'gray.600'}>
-                        to enjoy all of our cool features ✌️
+                        to enjoy our social media application ✌️
                     </Text>
                 </Stack>
                 <Box
@@ -94,13 +94,13 @@ export function Login(){
                             </InputGroup>
                         </FormControl>
                         <Stack spacing={3}>
-                            <Stack
+                            {/* <Stack
                                 direction={{ base: 'column', sm: 'row' }}
                                 align={'start'}
                                 justify={'space-between'}>
                                 <Checkbox>Remember me</Checkbox>
                                 <Text color={'cyan.400'}>Forgot password?</Text>
-                            </Stack>
+                            </Stack> */}
                             <Button
                                 borderColor={'cyan.400'}
                                 color={'cyan.400'}
