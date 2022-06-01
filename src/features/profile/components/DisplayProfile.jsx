@@ -26,6 +26,8 @@ export function DisplayProfile({value}){
     const currentUser = allUsers.find(({_id})=>_id===user._id);
     const { colorMode } = useColorMode();
 
+    const defaultProfileData = {profilePic, link, bio};
+
     const followHandler = () => {
         dispatch(followUser(_id));
     };
@@ -196,10 +198,10 @@ export function DisplayProfile({value}){
                     </>
                 }
                 </Stack>
+                <EditProfile isOpen={isOpen} onClose={onClose} defaultProfileData={defaultProfileData} />
             </Stack>
             }
         </Center>
-        <EditProfile isOpen={isOpen} onClose={onClose} />
         </>
     );
 }

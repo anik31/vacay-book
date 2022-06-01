@@ -86,7 +86,7 @@ const userSlice = createSlice({
         position: "top-right",
         isClosable: true,
         duration: 3000
-    })
+      })
     },
     [editUserInfo.pending]: (state) => {
       state.isLoading = true;
