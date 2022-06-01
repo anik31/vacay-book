@@ -94,13 +94,6 @@ export function Login(){
                             </InputGroup>
                         </FormControl>
                         <Stack spacing={3}>
-                            {/* <Stack
-                                direction={{ base: 'column', sm: 'row' }}
-                                align={'start'}
-                                justify={'space-between'}>
-                                <Checkbox>Remember me</Checkbox>
-                                <Text color={'cyan.400'}>Forgot password?</Text>
-                            </Stack> */}
                             <Button
                                 borderColor={'cyan.400'}
                                 color={'cyan.400'}
