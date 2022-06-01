@@ -29,8 +29,8 @@ export function Login(){
     const dispatch = useDispatch();
     const toast = useToast();
     const testCredentials = {
-        username: "adarshbalika",
-        password: "adarshBalika123"
+        username: "anik31",
+        password: "aniketPrakash123"
     }
 
     const loginHandler = () => {
