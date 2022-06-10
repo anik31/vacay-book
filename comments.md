@@ -3,9 +3,9 @@
 - Decreased nav elements font size
 - Removed border from comments
 - Decreased padding on post cards
-- Added short-circuiting for likecount & remove likes keyword
+- Added short-circuiting for likecount, remove likes keyword & change liked icon color
 - Update border colors for dark mode
 - Set current profile data as default during edit profile
 - Validation for link input
-- Add throttliong for button clicks - like/unlike, bookmark/unbookmark, follow/unfollow
+- Add throttling for button clicks - like/unlike, bookmark/unbookmark, follow/unfollow
 - Add more data to backend and remove adarsh balika
