@@ -12,17 +12,17 @@ export const posts = [
     content:
       "Vacation calories don’t count.",
     likes: {
-      likeCount: 0,
+      likeCount: 15,
       likedBy: [],
       dislikedBy: [],
     },
-    username: "adarshbalika",
+    username: "anik31",
     createdAt: "2021-05-23T10:38:12+05:30",
     updatedAt: formatDate(),
     comments: [
       {
         _id: uuid(),
-        username: "anik31",
+        username: "sainath",
         text: "Interesting",
         votes: {
           upvotedBy: [],
@@ -31,8 +31,8 @@ export const posts = [
       },
       {
         _id: uuid(),
-        username: "sonamgupta",
-        text: "Wow!",
+        username: "ankitanayak",
+        text: "Really?",
         votes: {
           upvotedBy: [],
           downvotedBy: [],
@@ -45,7 +45,7 @@ export const posts = [
     content:
       "Eiffel in love in Paris.",
     likes: {
-      likeCount: 0,
+      likeCount: 8,
       likedBy: [],
       dislikedBy: [],
     },
@@ -55,8 +55,8 @@ export const posts = [
     comments: [
       {
         _id: uuid(),
-        username: "angelpriya",
-        text: "with me?",
+        username: "sonaligupta",
+        text: "With me?",
         votes: {
           upvotedBy: [],
           downvotedBy: [],
@@ -69,11 +69,63 @@ export const posts = [
     content:
       "You can’t buy happiness, but you can buy ice cream on the beach!",
     likes: {
-      likeCount: 0,
+      likeCount: 11,
       likedBy: [],
       dislikedBy: [],
     },
     username: "anik31",
+    createdAt: "2022-03-05T10:38:12+05:30",
+    updatedAt: formatDate(),
+    comments: []
+  },
+  {
+    _id: uuid(),
+    content:
+      "Catch flights, not feelings.",
+    likes: {
+      likeCount: 19,
+      likedBy: [],
+      dislikedBy: [],
+    },
+    username: "sainath",
+    createdAt: "2022-04-15T10:38:12+05:30",
+    updatedAt: formatDate(),
+    comments: [
+      {
+        _id: uuid(),
+        username: "anik31",
+        text: "Lol",
+        votes: {
+          upvotedBy: [],
+          downvotedBy: [],
+        },
+      }
+    ]
+  },
+  {
+    _id: uuid(),
+    content:
+      "Collect moments, not things.",
+    likes: {
+      likeCount: 1,
+      likedBy: [],
+      dislikedBy: [],
+    },
+    username: "ankitanayak",
+    createdAt: "2022-05-30T10:38:12+05:30",
+    updatedAt: formatDate(),
+    comments: []
+  },
+  {
+    _id: uuid(),
+    content:
+      "An adventure a day keeps the doctor away.",
+    likes: {
+      likeCount: 0,
+      likedBy: [],
+      dislikedBy: [],
+    },
+    username: "sonaligupta",
     createdAt: formatDate(),
     updatedAt: formatDate(),
     comments: []

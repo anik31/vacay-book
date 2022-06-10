@@ -10,21 +10,23 @@ import {
     FormLabel,
     Input, 
     Button,
-    Textarea
+    Textarea,
+    useToast
 } from '@chakra-ui/react';
 import { useRef, useState } from "react";
 import { useDispatch } from 'react-redux';
 import { getImageUrl } from 'utils';
 import { editUserInfo } from '../userSlice';
 
-export function EditProfile({isOpen, onClose}){
+export function EditProfile({isOpen, onClose, defaultProfileData: {bio, link, profilePic}}){
     const initialRef = useRef();
-    const [profilePicLink, setProfilePicLink] = useState("");
-    const [linkInput, setLinkInput] = useState("");
-    const [bioInput, setBioInput] = useState("");
+    const [profilePicLink, setProfilePicLink] = useState(profilePic ?? "");
+    const [linkInput, setLinkInput] = useState(link ?? "");
+    const [bioInput, setBioInput] = useState(bio ?? "");
     const [isUploadingImage, setIsUploadingImage] = useState(false);
     const dispatch = useDispatch();
-    
+    const toast = useToast();
+
     const imageUpload = async({target}) => {
         setIsUploadingImage(true);
         const [file] = target.files;
@@ -34,8 +36,23 @@ export function EditProfile({isOpen, onClose}){
     }
 
     const editProfileHandler = () => {
-        dispatch(editUserInfo({profilePic: profilePicLink, link: linkInput, bio: bioInput}));
-        onClose();
+        if(linkInput){
+            if((/^(http(s)?:\/\/)[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\(\)\*\+,;=.]+$/).test(linkInput)){
+                dispatch(editUserInfo({profilePic: profilePicLink, link: linkInput, bio: bioInput}));
+                onClose();
+            }else{
+                toast({
+                    title: `Invalid link`,
+                    status: "warning",
+                    position: "top-right",
+                    isClosable: true,
+                    duration: 3000
+                })
+            }
+        }else{
+            dispatch(editUserInfo({profilePic: profilePicLink, link: linkInput, bio: bioInput}));
+            onClose();
+        }
     }
 
     return (

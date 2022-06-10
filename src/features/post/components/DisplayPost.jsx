@@ -27,7 +27,7 @@ import { HamburgerIcon } from '@chakra-ui/icons';
 import { CreatePost } from './CreatePost';
 import { addPostInBookmarks, removePostFromBookmarks } from '../bookmarkSlice';
 import { Link } from 'react-router-dom';
-import { getCustomDate } from 'utils';
+import { getCustomDate, throttle } from 'utils';
 
 export function DisplayPost({post}){
   const {_id, comments, content, createdAt, likes: {likeCount, likedBy}, username} = post;
@@ -55,21 +55,33 @@ export function DisplayPost({post}){
           position: "top-right",
           isClosable: true,
           duration: 3000
-        })
-      }};
+      })
+    }};
     
     const editHandler = () => {
       setIsEdit(true);
       onOpen();
     }
 
+    const likeAPost = () => dispatch(likePost(_id));
+    const likeHandler = throttle(likeAPost,1000);
+
+    const dislikeAPost = () => dispatch(disLikePost(_id));
+    const dislikeHandler = throttle(dislikeAPost,1000);
+
+    const bookmarkAPost = () => dispatch(addPostInBookmarks(_id));
+    const bookmarkHandler = throttle(bookmarkAPost,1000);
+
+    const unbookmarkAPost = () => dispatch(removePostFromBookmarks(_id));
+    const unbookmarkHandler = throttle(unbookmarkAPost,1000);
+
     return (
       <>
-    <Center py={5}>
+    <Center py={3}>
       <Box
         w={'full'}
         bg={useColorModeValue('white', 'gray.900')}
-        border='1px' borderColor='gray.200'
+        border='1px' borderColor={useColorModeValue('gray.200','gray.600')}
         rounded={'md'}
         px={5}
         py={4}
@@ -117,16 +129,17 @@ export function DisplayPost({post}){
                     icon={<MdFavorite/>}
                     variant="ghost"
                     fontSize="1.5rem"
-                    onClick={()=>dispatch(disLikePost(_id))}
+                    color={"#f91880"}
+                    onClick={()=>dislikeHandler()}
                   />
                 : <IconButton
                     icon={<MdFavoriteBorder/>}
                     variant="ghost"
                     fontSize="1.5rem"
-                    onClick={()=>dispatch(likePost(_id))}
+                    onClick={()=>likeHandler()}
                   />
                 }
-                <span>{likeCount} Likes</span>
+                {likeCount && <span>{likeCount}</span>}
             </Stack>
 
             {bookmarks.some(id=>id===_id)
@@ -134,13 +147,13 @@ export function DisplayPost({post}){
                 icon={<MdBookmark/>}
                 variant="ghost"
                 fontSize="1.5rem"
-                onClick={()=>dispatch(removePostFromBookmarks(_id))}
+                onClick={()=>unbookmarkHandler()}
               />
              : <IconButton
                 icon={<MdBookmarkBorder/>}
                 variant="ghost"
                 fontSize="1.5rem"
-                onClick={()=>dispatch(addPostInBookmarks(_id))}
+                onClick={()=>bookmarkHandler()}
             />}
         </Stack>
 

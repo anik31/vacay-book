@@ -29,8 +29,8 @@ export function Login(){
     const dispatch = useDispatch();
     const toast = useToast();
     const testCredentials = {
-        username: "adarshbalika",
-        password: "adarshBalika123"
+        username: "anik31",
+        password: "aniketPrakash123"
     }
 
     const loginHandler = () => {
@@ -61,8 +61,8 @@ export function Login(){
             <Stack spacing={8} mx={'auto'} maxW={'lg'} py={6} px={6}>
                 <Stack align={'center'}>
                     <Heading fontSize={'4xl'}>Sign in to your account</Heading>
-                    <Text fontSize={'lg'} color={'gray.600'}>
-                        to enjoy all of our cool features ✌️
+                    <Text fontSize={'lg'} color={useColorModeValue('gray.600','')}>
+                        to enjoy our social media application ✌️
                     </Text>
                 </Stack>
                 <Box
@@ -94,13 +94,6 @@ export function Login(){
                             </InputGroup>
                         </FormControl>
                         <Stack spacing={3}>
-                            <Stack
-                                direction={{ base: 'column', sm: 'row' }}
-                                align={'start'}
-                                justify={'space-between'}>
-                                <Checkbox>Remember me</Checkbox>
-                                <Text color={'cyan.400'}>Forgot password?</Text>
-                            </Stack>
                             <Button
                                 borderColor={'cyan.400'}
                                 color={'cyan.400'}
