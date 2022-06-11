@@ -64,16 +64,16 @@ export function DisplayPost({post}){
     }
 
     const likeAPost = () => dispatch(likePost(_id));
-    const likeHandler = throttle(likeAPost,1000);
+    const likeHandler = throttle(likeAPost,400);
 
     const dislikeAPost = () => dispatch(disLikePost(_id));
-    const dislikeHandler = throttle(dislikeAPost,1000);
+    const dislikeHandler = throttle(dislikeAPost,400);
 
     const bookmarkAPost = () => dispatch(addPostInBookmarks(_id));
-    const bookmarkHandler = throttle(bookmarkAPost,1000);
+    const bookmarkHandler = throttle(bookmarkAPost,400);
 
     const unbookmarkAPost = () => dispatch(removePostFromBookmarks(_id));
-    const unbookmarkHandler = throttle(unbookmarkAPost,1000);
+    const unbookmarkHandler = throttle(unbookmarkAPost,400);
 
     return (
       <>

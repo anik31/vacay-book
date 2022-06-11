@@ -30,10 +30,10 @@ export function DisplayProfile({value}){
     const defaultProfileData = {profilePic, link, bio};
 
     const followAUser = () => dispatch(followUser(_id));
-    const followHandler = throttle(followAUser,1000);
+    const followHandler = throttle(followAUser,400);
 
     const unfollowAUser = () => dispatch(unfollowUser(_id));
-    const unfollowHandler = throttle(unfollowAUser,1000);
+    const unfollowHandler = throttle(unfollowAUser,400);
 
     const logoutHandler = () => {
         dispatch(logoutUser());

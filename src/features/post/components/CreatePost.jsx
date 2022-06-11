@@ -44,7 +44,7 @@ export function CreatePost({isOpen, onClose, editPostData, setIsEdit}){
         }
     };
 
-    const createPostHandler = throttle(createAPost,1000);
+    const createPostHandler = throttle(createAPost,400);
 
     return (
         <Modal isCentered isOpen={isOpen} onClose={onClose} initialFocusRef={initialRef}>
