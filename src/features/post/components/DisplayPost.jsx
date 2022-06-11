@@ -46,7 +46,7 @@ export function DisplayPost({post}){
 
     const commentHandler = () => {
       if(commentInput.trim()){
-        dispatch(commentOnPost({postId: _id, commentData: {text: commentInput}}));
+        dispatch(commentOnPost({postId: _id, commentData: {text: commentInput.trim()}}));
         setCommentInput("");
       }else{
         toast({
