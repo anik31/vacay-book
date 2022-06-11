@@ -45,7 +45,7 @@ export function DisplayPost({post}){
     const displayDate = getCustomDate(createdAt);
 
     const commentHandler = () => {
-      if(commentInput){
+      if(commentInput.trim()){
         dispatch(commentOnPost({postId: _id, commentData: {text: commentInput}}));
         setCommentInput("");
       }else{

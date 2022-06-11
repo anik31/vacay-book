@@ -9,3 +9,4 @@
 - Validation for link input
 - Add throttling for button clicks - like/unlike, bookmark/unbookmark, follow/unfollow
 - Add more data to backend and remove adarsh balika
+- Add empty input validation

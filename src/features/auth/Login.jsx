@@ -34,7 +34,7 @@ export function Login(){
     }
 
     const loginHandler = () => {
-        if(credentials.username && credentials.password){
+        if(credentials.username.trim() && credentials.password.trim()){
             dispatch(loginUser(credentials));
         }else{
             toast({

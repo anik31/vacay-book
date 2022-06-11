@@ -34,8 +34,8 @@ export function Signup(){
     const toast = useToast();
 
     const signupHandler = () => {
-        if(credentials.username==="" || credentials.password==="" || credentials.firstName==="" 
-        || credentials.lastName==="" || confirmPassword===""){
+        if(!credentials.username.trim() || !credentials.password.trim() || !credentials.firstName.trim() 
+        || !credentials.lastName.trim() || !confirmPassword.trim()){
             toast({
                 title: "Please fill all fields",
                 status: "warning",

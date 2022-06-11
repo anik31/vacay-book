@@ -24,12 +24,15 @@ export function CreatePost({isOpen, onClose, editPostData, setIsEdit}){
     const dispatch = useDispatch();
 
     const createAPost = () => {
-        if(editPostData){
-            dispatch(editPost({...editPostData, content: postInput}));
-            setIsEdit(false);
-        }else if(postInput){
-            dispatch(createPost({content: postInput}));
+        if(editPostData && postInput.trim()){
+            dispatch(editPost({...editPostData, content: postInput.trim()}));
             onClose();
+            setIsEdit(false);
+            setPostInput("");
+        }else if(postInput.trim()){
+            dispatch(createPost({content: postInput.trim()}));
+            onClose();
+            setPostInput("");
         }else{
             toast({
                 title: "Post text is empty",
@@ -39,7 +42,6 @@ export function CreatePost({isOpen, onClose, editPostData, setIsEdit}){
                 duration: 3000
             })
         }
-        setPostInput("");
     };
 
     const createPostHandler = throttle(createAPost,1000);
