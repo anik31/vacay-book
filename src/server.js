@@ -4,6 +4,7 @@ import { users } from "./backend/db/users";
 import {
   loginHandler,
   signupHandler,
+  verifyUser
 } from "./backend/controllers/AuthController";
 import {
   createPostHandler,
@@ -65,6 +66,7 @@ export function makeServer({ environment = "development" } = {}) {
       // auth routes (public)
       this.post("/auth/signup", signupHandler.bind(this));
       this.post("/auth/login", loginHandler.bind(this));
+      this.post("/auth/verify", verifyUser.bind(this));
 
       // post routes (public)
       this.get("/posts", getAllpostsHandler.bind(this));

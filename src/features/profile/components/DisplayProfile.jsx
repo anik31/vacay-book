@@ -43,7 +43,7 @@ export function DisplayProfile({value}){
         <>
         <Center>
         {isLoading 
-        ?   <Center my={5}>
+        ?   <Center mt="10rem">
                 <Spinner
                     thickness='4px'
                     speed='0.65s'

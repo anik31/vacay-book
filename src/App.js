@@ -9,12 +9,20 @@ import { getAllUser } from "features/profile/userSlice";
 import { getPosts } from "features/post/postSlice";
 import { getBookmarkPosts } from "features/post/bookmarkSlice";
 import {useScrollToTop} from "hooks/useScrollToTop";
+import { verifyUser } from "features/auth/authSlice";
 
 function App() {
   const dispatch = useDispatch();
   const {token} = useSelector(store=>store.auth);
+  const localStorageToken = localStorage.getItem("token");
 
   useScrollToTop();
+
+  useEffect(()=>{
+    if(localStorageToken){
+      dispatch(verifyUser(localStorageToken));
+    }
+  },[])
 
   useEffect(()=>{
     if(token){

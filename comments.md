@@ -10,3 +10,6 @@
 - Add throttling for button clicks - like/unlike, bookmark/unbookmark, follow/unfollow
 - Add more data to backend and remove adarsh balika
 - Add empty input validation
+- Update loaders margin
+- Added loaders for auth
+- Add persistent auth - verify auth controller, verify token on refresh, asyncThunk & reducers for verify route

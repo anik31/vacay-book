@@ -17,10 +17,11 @@ import {
 import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons';
 import { Link } from 'react-router-dom';
 import {useState} from "react";
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { loginUser } from './authSlice';
 
 export function Login(){    
+    const {isAuthLoading} = useSelector(store=>store.auth);
     const [showPassword, setShowPassword] = useState(false);
     const [credentials, setCredentials] = useState({
         username: "",
@@ -102,6 +103,7 @@ export function Login(){
                                 color:"white"
                                 }}
                                 variant="outline"
+                                isDisabled={isAuthLoading}
                                 onClick={testLoginHandler}>
                                 Test Login
                             </Button>
@@ -111,6 +113,8 @@ export function Login(){
                                 _hover={{
                                 bg: 'cyan.500',
                                 }}
+                                isLoading={isAuthLoading}
+                                loadingText='Logging in'
                                 onClick={loginHandler}>
                                 Sign in
                             </Button>
