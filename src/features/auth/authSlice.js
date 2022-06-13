@@ -22,7 +22,6 @@ export const loginUser = createAsyncThunk("auth/login", async(credentials, { rej
 export const verifyUser = createAsyncThunk("auth/verify", async(encodedToken, { rejectWithValue })=>{
   try{
     const {data} = await axios.post("/api/auth/verify", {encodedToken});
-    console.log(data);
     return {data, encodedToken};
   }catch(error){
     return rejectWithValue(error.response.data.errors[0]);
