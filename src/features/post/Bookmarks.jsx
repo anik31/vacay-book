@@ -10,7 +10,7 @@ export function Bookmarks(){
     return (
         <>
         {isLoading 
-        ? <Center my={5}>
+        ? <Center my="10rem">
             <Spinner
                 thickness='4px'
                 speed='0.65s'

@@ -17,7 +17,7 @@ export function Profile(){
         <>
         <DisplayProfile value={{...user,posts: postLength}} />
         {isLoading 
-        ? <Center my={5}>
+        ? <Center mt="10rem">
             <Spinner
                 thickness='4px'
                 speed='0.65s'
@@ -26,9 +26,7 @@ export function Profile(){
                 size='xl'
             />
         </Center>
-        
-        : 
-        <>
+        : <>
         {userPosts.length>0
         ?   userPosts.map(post=><DisplayPost key={post._id} post={post} />)
         :   <Text align="center" fontSize="1.5rem" mt={6} mb={2}>No Posts Found</Text>
