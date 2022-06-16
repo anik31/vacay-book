@@ -26,6 +26,7 @@ https://user-images.githubusercontent.com/56336326/170030054-72a237fa-1950-4581-
     - Portfolio URL
     - Profile picture
 - Edit profile
+- Throttling for button clicks
 - Authentication
     - Sign up
     - Login 
