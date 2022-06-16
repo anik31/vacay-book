@@ -13,3 +13,4 @@
 - Update loaders margin
 - Added loaders for auth
 - Add persistent auth - verify auth controller, verify token on refresh, asyncThunk & reducers for verify route
+- Updated README
